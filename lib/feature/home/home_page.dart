@@ -40,10 +40,10 @@ class _HomePageState extends State<HomePage> {
           child: GridView.builder(
             itemCount: list.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 15,
               crossAxisCount: 2,
-              childAspectRatio: 0.5,
+              childAspectRatio: 0.7,
             ),
             itemBuilder: (context, index) {
               return CatCardWidget(
