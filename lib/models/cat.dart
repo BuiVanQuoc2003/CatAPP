@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final cat = catFromJson(jsonString);
+
 import 'dart:convert';
 
 Cat catFromJson(String str) => Cat.fromJson(json.decode(str));
@@ -9,6 +13,7 @@ class Cat {
     String image;
     String description;
     String type;
+    String sex;
     String id;
 
     Cat({
@@ -16,15 +21,17 @@ class Cat {
         required this.image,
         required this.description,
         required this.type,
+        required this.sex,
         required this.id,
     });
 
     factory Cat.fromJson(Map<String, dynamic> json) => Cat(
-        name: json["name"] ?? "",
-        image: json["image"] ?? "",
-        description: json["description"] ?? "",
-        type: json["type"] ?? "",
-        id: json["id"] ?? "",
+        name: json["name"],
+        image: json["image"],
+        description: json["description"],
+        type: json["type"],
+        sex: json["sex"],
+        id: json["id"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -32,6 +39,7 @@ class Cat {
         "image": image,
         "description": description,
         "type": type,
+        "sex": sex,
         "id": id,
     };
 }
