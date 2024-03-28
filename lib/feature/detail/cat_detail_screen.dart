@@ -1,6 +1,7 @@
 import 'package:catapp/config/constant.dart';
 import 'package:catapp/models/cat.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../repository/user_repository.dart';
 import '../auth/widget/loading.dart';
@@ -23,7 +24,6 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
       body: SizedBox(
         width: size.width,
         height: size.height,
@@ -36,7 +36,20 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
             Positioned(
               bottom: 0,
               child: _buildDetailCat(context),
-            )
+            ),
+            Positioned(
+              top: 15,
+              left: 15,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),

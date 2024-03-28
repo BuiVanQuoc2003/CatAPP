@@ -18,6 +18,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final confirmPassWordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool hiddenPassword = true;
+  bool hiddenConfirmPw = true;
 
   _signUp() {
     if (confirmPassWordController.text != passwordController.text) {
@@ -110,14 +111,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: TextFormField(
+                    obscureText: hiddenConfirmPw,
                     controller: confirmPassWordController,
                     decoration: InputDecoration(
                       labelText: 'Confirm password',
                       suffixIcon: IconButton(
                         onPressed: () => setState(() {
-                          hiddenPassword = !hiddenPassword;
+                          hiddenConfirmPw = !hiddenConfirmPw;
                         }),
-                        icon: Icon(!hiddenPassword
+                        icon: Icon(!hiddenConfirmPw
                             ? Icons.visibility_off
                             : Icons.visibility),
                       ),
