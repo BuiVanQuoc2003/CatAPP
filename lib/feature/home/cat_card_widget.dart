@@ -74,12 +74,13 @@ class _CatCardWidgetState extends State<CatCardWidget> {
                           ),
                           const Spacer(),
                           IconButton(
-                              onPressed: _addFavorite,
-                              icon: const Icon(
-                                Icons.favorite_outline,
-                                color: Colors.red,
-                                size: 30,
-                              )),
+                            onPressed: _addFavorite,
+                            icon: const Icon(
+                              Icons.favorite_outline,
+                              color: Colors.red,
+                              size: 30,
+                            ),
+                          ),
                         ],
                       )
                     ],
