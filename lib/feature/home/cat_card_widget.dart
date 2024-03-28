@@ -1,9 +1,9 @@
 import 'package:catapp/config/constant.dart';
+import 'package:catapp/feature/auth/widget/loading.dart';
 import 'package:catapp/feature/detail/cat_detail_screen.dart';
 import 'package:catapp/models/cat.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:catapp/repository/user_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CatCardWidget extends StatefulWidget {
   const CatCardWidget({super.key, required this.cat});
@@ -74,7 +74,7 @@ class _CatCardWidgetState extends State<CatCardWidget> {
                           ),
                           const Spacer(),
                           IconButton(
-                              onPressed: () {},
+                              onPressed: _addFavorite,
                               icon: const Icon(
                                 Icons.favorite_outline,
                                 color: Colors.red,
@@ -91,6 +91,24 @@ class _CatCardWidgetState extends State<CatCardWidget> {
         ],
       ),
     );
+  }
+
+  _addFavorite() {
+    showLoadingDialog();
+    UserRepository.instance.addFavorite(widget.cat).then((value) {
+      hideLoadingDialog();
+      String message = '';
+      if (!value) {
+        message = 'Add to favorite failed';
+      } else {
+        message = 'Add to favorite success';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+        ),
+      );
+    });
   }
 
   _goToDetail(Cat cat) {

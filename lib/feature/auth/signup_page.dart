@@ -3,6 +3,8 @@ import 'package:catapp/feature/auth/widget/loading.dart';
 import 'package:catapp/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 
+import 'signin_page.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -41,12 +43,16 @@ class _SignUpPageState extends State<SignUpPage> {
             context: context,
             builder: (context) => AlertDialog(
               title: const Text('Sign up success!'),
-              content: const Text(
-                  'Please check your email and  verify your email address.'),
+              content: const Text('You can sign in now.'),
               actions: [
                 FilledButton(
                   onPressed: () {
-                    Navigator.of(context).popUntil((route) => route.isFirst);
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInPage()),
+                      (Route<dynamic> route) => false,
+                    );
                   },
                   child: const Text('Ok'),
                 )

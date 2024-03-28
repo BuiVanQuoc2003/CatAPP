@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:catapp/models/cat.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -91,6 +92,21 @@ class UserRepository {
       await _firebaseAuth.signOut();
     } catch (e) {
       log(e.toString());
+    }
+  }
+
+  Future<bool> addFavorite(Cat cat) async {
+    try {
+      await firestore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser!.uid)
+          .collection('cats')
+          .doc(cat.id)
+          .set(cat.toJson());
+      return true;
+    } catch (e) {
+      log(e.toString());
+      return false;
     }
   }
 }

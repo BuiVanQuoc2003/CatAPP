@@ -2,6 +2,9 @@ import 'package:catapp/config/constant.dart';
 import 'package:catapp/models/cat.dart';
 import 'package:flutter/material.dart';
 
+import '../../repository/user_repository.dart';
+import '../auth/widget/loading.dart';
+
 class CatDetailScreen extends StatefulWidget {
   const CatDetailScreen({super.key, required this.cat});
 
@@ -20,6 +23,7 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(),
       body: SizedBox(
         width: size.width,
         height: size.height,
@@ -178,7 +182,7 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
   _buildButtonFavourite(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: () {},
+      onTap: _addFavorite,
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         width: size.width,
@@ -189,7 +193,7 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
         padding: const EdgeInsets.symmetric(vertical: 15),
         child: Center(
             child: Text(
-          "Favorite",
+          "Add to favorite",
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -197,5 +201,23 @@ class _CatDetailScreenState extends State<CatDetailScreen> {
         )),
       ),
     );
+  }
+
+  _addFavorite() {
+    showLoadingDialog();
+    UserRepository.instance.addFavorite(widget.cat).then((value) {
+      hideLoadingDialog();
+      String message = '';
+      if (!value) {
+        message = 'Add to favorite failed';
+      } else {
+        message = 'Add to favorite success';
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+        ),
+      );
+    });
   }
 }
