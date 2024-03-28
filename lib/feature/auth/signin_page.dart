@@ -2,7 +2,7 @@ import 'package:catapp/config/validator.dart';
 import 'package:catapp/feature/auth/forget_password_page.dart';
 import 'package:catapp/feature/auth/signup_page.dart';
 import 'package:catapp/feature/auth/widget/loading.dart';
-import 'package:catapp/feature/home/home_page.dart';
+import 'package:catapp/feature/main_page.dart';
 import 'package:catapp/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -34,10 +34,10 @@ class _SignInPageState extends State<SignInPage> {
             ),
           );
         } else {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (ctx) => const HomePage(),
-            ),
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const MainPage()),
+            (Route<dynamic> route) => false,
           );
         }
       });

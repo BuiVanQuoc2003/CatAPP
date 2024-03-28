@@ -1,4 +1,4 @@
-import 'package:catapp/feature/auth/signin_page.dart';
+import 'package:catapp/feature/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
 import 'config/theme.dart';
@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
       theme: theme,
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: const SignInPage(),
+      home:  const SplashPage(),
     );
   }
 }
