@@ -5,6 +5,7 @@ import 'package:catapp/feature/auth/widget/loading.dart';
 import 'package:catapp/feature/main_page.dart';
 import 'package:catapp/repository/user_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -49,75 +50,89 @@ class _SignInPageState extends State<SignInPage> {
     final textTheme = Theme.of(context).textTheme;
     final screenWidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/images/cat-logo.png',
-                      width: screenWidth / 2,
-                    ),
-                    Text(
-                      'Sign in'.toUpperCase(),
-                      style: textTheme.headlineLarge
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: TextFormField(
-                    controller: emailController,
-                    validator: Validator.validator,
-                    decoration: const InputDecoration(labelText: 'Email'),
-                  ),
-                ),
-                TextFormField(
-                  obscureText: hiddenPassword,
-                  controller: passwordController,
-                  validator: Validator.validator,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    suffixIcon: IconButton(
-                      // update lại trang thái ẩn hiện của password
-                      onPressed: () => setState(() {
-                        hiddenPassword = !hiddenPassword;
-                      }),
-                      icon: Icon(!hiddenPassword
-                          ? Icons.visibility_off
-                          : Icons.visibility),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ForgetPasswordPage(),
-                      ),
-                    ),
-                    child: const Text('For get password ?'),
-                  ),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: _signIn,
-                    child: const Text('Sign in'),
-                  ),
-                ),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: kToolbarHeight),
+              child: Text(
+                'IFCAT',
+                style: textTheme.headlineLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/cat-logo.png',
+                            width: screenWidth / 2,
+                          ),
+                          Text(
+                            'Sign in'.toUpperCase(),
+                            style: textTheme.headlineMedium
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: TextFormField(
+                          controller: emailController,
+                          validator: Validator.validator,
+                          decoration: const InputDecoration(labelText: 'Email'),
+                        ),
+                      ),
+                      TextFormField(
+                        obscureText: hiddenPassword,
+                        controller: passwordController,
+                        validator: Validator.validator,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          suffixIcon: IconButton(
+                            // update lại trang thái ẩn hiện của password
+                            onPressed: () => setState(() {
+                              hiddenPassword = !hiddenPassword;
+                            }),
+                            icon: Icon(!hiddenPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ForgetPasswordPage(),
+                            ),
+                          ),
+                          child: const Text('For get password ?'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: FilledButton(
+                          onPressed: _signIn,
+                          child: const Text('Sign in'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: Padding(

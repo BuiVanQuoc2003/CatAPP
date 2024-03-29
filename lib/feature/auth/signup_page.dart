@@ -81,7 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Text(
                   'Sign up'.toUpperCase(),
-                  style: textTheme.headlineLarge
+                  style: textTheme.headlineMedium
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Padding(
