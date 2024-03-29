@@ -5,7 +5,6 @@ import 'package:catapp/feature/auth/widget/loading.dart';
 import 'package:catapp/feature/main_page.dart';
 import 'package:catapp/repository/user_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -57,8 +56,10 @@ class _SignInPageState extends State<SignInPage> {
               padding: const EdgeInsets.symmetric(vertical: kToolbarHeight),
               child: Text(
                 'IFCAT',
-                style: textTheme.headlineLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: textTheme.displayMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
             Center(

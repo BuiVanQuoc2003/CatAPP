@@ -1,7 +1,6 @@
 import 'package:catapp/config/constant.dart';
 import 'package:catapp/models/cat.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../repository/user_repository.dart';
 import '../auth/widget/loading.dart';
